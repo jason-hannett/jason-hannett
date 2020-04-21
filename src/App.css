@@ -153,11 +153,13 @@ header {
   padding-top: 60px;
   padding-bottom: 70px;
   overflow: scroll;
+  /* position: absolute; */
 }
 
 .player-container{
   height: 100px;
   width: 500px;
+  /* position: absolute; */
   background-color: white;
   margin-top: 40px;
   display: flex;
@@ -256,17 +258,23 @@ header {
 .comments-container{
   height: 75px;
   width: 500px;
-  background-color: red;
+  /* background-color: red; */
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  overflow: scroll;
+  flex-direction: column;
+  padding-top: 30px;
+  padding-bottom: 10px;
 }
 
 .comment-info{
   height: 25px;
   width: 480px;
+  /* position: fixed; */
   background-color: white;
   margin-top: 10px;
+  margin-left: 7px;
   display: flex;
   align-items: center;
   justify-content: flex-start;

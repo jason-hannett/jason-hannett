@@ -95,7 +95,7 @@ class Player extends Component {
             </div>
 
             </div>
-            <div>
+            <div className='comments-container'>
               {allComments}
           </div>
    </div>

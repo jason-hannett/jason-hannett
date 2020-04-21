@@ -36,6 +36,8 @@ const express = require('express'),
     app.get('/api/song/:song_id', ctrl.getSong)
     app.get('/api/comments/:song_id', ctrl.getAllComments)
     app.delete('/api/unlike/:song_id', ctrl.unlikeSong)
+    app.delete('/api/delete-comment/:id', ctrl.deleteComment)
+    app.put('/api/update-comment/:id', ctrl.updateComment)
 
      //auth endpoints 
      app.post('/api/register', authCtrl.register)

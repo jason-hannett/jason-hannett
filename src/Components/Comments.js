@@ -15,21 +15,30 @@ class Comments extends Component {
     super(props)
 
     this.state = {
-        
+        comment: ''
     }
   }
 
+  // inputHandler = (event) => {
+  //   this.setState({
+  //       [event.target.name]: event.target.value
+  //   })
+
+  deleteComment = () => {
+    console.log('delete button')
+    console.log(this.props.comment.id)
+    const {id} = this.props.comment
+    axios.delete(`/api/delete-comment/${id}`)
+  }
 
   render(){
     console.log(this.props)
   return (
-            <div className='comments-container'>
                         <div className='comment-info'>
-                            <p>{this.props.user.username}:</p>
+                            <p>{this.props.comment.username}:</p>
                             <p className='comment'>{this.props.comment.comment}</p>
-                            <button className='comment-delete'>delete</button>
+                            <button onClick={this.deleteComment} className='comment-delete'>delete</button>
                         </div>
-          </div>
   );
   }
 }

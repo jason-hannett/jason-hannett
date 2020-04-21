@@ -91,5 +91,24 @@ module.exports = {
         .catch(err => res.status(500).send(err))
     },
 
+    updateComment: (req, res) => {
+        const db = req.app.get('db');
+        const {id} = req.params
+        const {comment} = req.body
+        console.log(req.body)
+        db.update_comment(id, comment)
+        .then(newComment => res.status(200).send(newComment))
+        .catch(err => res.status(500).send(err))
+    },
+
+    deleteComment: (req, res) => {
+        const db = req.app.get('db')
+        const {id} = req.params
+         console.log(req.params)
+        db.unlike_song(id)
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
+    },
+
     
 }
