@@ -1,18 +1,61 @@
+@font-face {
+  font-family: fredokaOne;
+  src: url(https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap);
+}
+
+@font-face{
+  font-family: paytoneOne;
+  src: url(https://fonts.googleapis.com/css2?family=Paytone+One&display=swap);
+}
+/* @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap'); */
+
+
 /* Auth component */
+
+.auth-background{
+  display: flex;
+  background-color: rgb(186,202,216);
+  height: 100vh;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
 
 .login-container{
   width: 300px;
   height: 400px;
-  background-color: grey;
-  margin-left: 400px;
-  margin-top: 100px;
+  background-color: rgb(0,101,174);
+  border-radius: 3%;
+  box-shadow: 8px 5px 20px black;
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgb(253,207,0);
+  /* margin-left: 400px;
+  margin-top: 100px; */
   display: flex;
   align-items: center;
   flex-direction: column;
 }
 
+#login-header{
+  font-family: paytoneOne;
+  color: white;
+  text-shadow: 5px 3px 4px black;
+}
+
 #login-logo{
   margin-top: 20px;
+
+  animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
 }
 
 .login-input-container{
@@ -22,15 +65,49 @@
   margin-top: 50px;
 }
 
+.login-input-2{
+  height: 20px;
+  border-style: none;
+  box-shadow: 5px 3px 4px black;
+}
+
+.login-input-1{
+  margin-top: 10px;
+  height: 20px;
+  border-style: none;
+  box-shadow: 5px 3px 7px black;
+}
+.login-button{
+  margin-top: 15px;
+  height: 20px;
+  box-shadow: 5px 3px 7px black;
+  border-style: none;
+  border-radius: 5%;
+}
+
+.login-text{
+  color: black;
+  text-decoration: none;
+}
+
 .register-container{
   width: 300px;
   height: 400px;
-  background-color: grey;
-  margin-left: 400px;
-  margin-top: 100px;
+  background-color: rgb(0,101,174);
+  border-radius: 3%;
+  box-shadow: 8px 5px 20px black;
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgb(253,207,0);
   display: flex;
   align-items: center;
   flex-direction: column;
+}
+
+#register-header{
+  font-family: paytoneOne;
+  color: white;
+  text-shadow: 5px 3px 4px black;
 }
 
 .register-input-container{
@@ -40,17 +117,28 @@
   margin-top: 50px;
 }
 
+
 /* Yesno container  */
 
 .yesno-container{
   width: 300px;
   height: 400px;
-  background-color: grey;
-  margin-left: 400px;
-  margin-top: 100px;
+  background-color: rgb(0,101,174);
+  border-radius: 3%;
+  box-shadow: 8px 5px 20px black;
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgb(253,207,0);
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
+}
+
+.yes-no-header {
+  font-family: paytoneOne;
+  color: white;
+  text-shadow: 5px 3px 4px black;
 }
 
 /* Artist info container  */
@@ -58,11 +146,15 @@
 .artist-info-container{
   width: 300px;
   height: 400px;
-  background-color: grey;
-  margin-left: 400px;
-  margin-top: 100px;
+  background-color: rgb(0,101,174);
+  border-radius: 3%;
+  box-shadow: 8px 5px 20px black;
+  border-style: solid;
+  border-width: 2px;
+  border-color: rgb(253,207,0);
   display: flex;
   align-items: center;
+  justify-content: center;
   flex-direction: column;
 }
 
@@ -71,6 +163,12 @@
   align-items: center;
   flex-direction: column;
   margin-top: 50px;
+}
+
+.artist-info-header{
+  font-family: paytoneOne;
+  color: white;
+  text-shadow: 5px 3px 4px black;
 }
 
 /* Nav component */
@@ -251,8 +349,8 @@ header {
   width: 250px;
 }
 
-.player-remove-button{
-  
+.player-liked-button{
+  background-color: blue;
 }
 
 .comments-container{

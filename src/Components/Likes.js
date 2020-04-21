@@ -26,7 +26,7 @@ class Likes extends Component{
 
 
     render(){
-       console.log(this.props.likedSong)
+       console.log(this.props)
     //    console.log(this.state.songs)
         const likedSongs = this.state.likes.map((element, index) => {
             return <Player key={`like: ${index}`} song={element}/>

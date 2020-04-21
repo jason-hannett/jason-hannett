@@ -17,7 +17,8 @@ class Player extends Component {
 
     this.state = {
         comment: '',
-        userComments: []
+        userComments: [],
+        isLiked: false
     }
   }
 
@@ -38,6 +39,7 @@ class Player extends Component {
       axios.post(`/api/like-song/${song_id}`)
       .then(response => {
           this.props.getLikedSongs()
+          this.likeToggle()
       })
     }
 
@@ -47,6 +49,13 @@ class Player extends Component {
       axios.delete(`api/unlike/${song_id}`)
       .then(response => {
         // this.props.history.push('/likes')
+      })
+    }
+
+    likeToggle = () => {
+      console.log('like button pressed')
+      this.setState({
+        isLiked: !this.state.isLiked
       })
     }
 
@@ -69,7 +78,7 @@ class Player extends Component {
 }
 
   render(){
-    console.log(this.props)
+    console.log(this.props.likes)
     const allComments = this.state.userComments.map((element, index) => {
       return <Comments key={index} comment={element} getComments={this.getComments}/>
     })
@@ -89,7 +98,9 @@ class Player extends Component {
                 <audio>{this.props.song.file}</audio>   
             </div>
             <div className='player-interact-container'>
-                <button onClick={this.likeSong} className='player-like-button'>like</button>
+                {this.state.isLiked ? 
+                (<button className='player-liked-button'>liked</button>) 
+                : (<button onClick={this.likeSong} className='player-like-button'>like</button> )}
                 <input onChange={this.inputHandler} 
                        className='player-input' 
                        name='comment' 

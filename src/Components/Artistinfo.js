@@ -36,27 +36,32 @@ class Artistinfo extends Component{
     render(){
         // console.log(this.props)
         return(
-            <div className='artist-info-container'>
-                Artist Info
-                <div className='artist-input-container'>
-                <input 
-                        value={this.state.artist_name}
-                        name='artist_name'
+            <div className='auth-background'>
+                <div className='artist-info-container'>
+                    <h2 className='artist-info-header'>Artist Info</h2>
+                    <div className='artist-input-container'>
+                    <input 
+                            value={this.state.artist_name}
+                            name='artist_name'
+                            onChange={(event) => this.inputHandler(event)}
+                            placeholder='Artist name'
+                            className='login-input-2'/>
+                    <input 
+                        value={this.state.profile_pic}
+                        name='profile_pic'
                         onChange={(event) => this.inputHandler(event)}
-                        placeholder='Artist name'/>
-                <input 
-                       value={this.state.profile_pic}
-                       name='profile_pic'
-                       onChange={(event) => this.inputHandler(event)}
-                       placeholder='Profile picture'/>
-                <input 
-                       value={this.state.age}
-                       name='age'
-                       onChange={(event) => this.inputHandler(event)}
-                       placeholder='Age'/>
-                </div>       
-                <button onClick={this.artistHandler}>Submit</button>
-            </div>
+                        placeholder='Profile picture'
+                        className='login-input-1'/>
+                    <input 
+                        value={this.state.age}
+                        name='age'
+                        onChange={(event) => this.inputHandler(event)}
+                        placeholder='Age'
+                        className='login-input-1'/>
+                    </div>       
+                    <button className='login-button' onClick={this.artistHandler}>Submit</button>
+                </div>
+           </div> 
         )
     }
 
