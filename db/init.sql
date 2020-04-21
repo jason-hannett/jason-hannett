@@ -21,6 +21,12 @@ create table songs (
 	date date
 );
 
+ create table user_likes(
+    id serial primary key,
+    song_id int references songs(song_id),
+    user_id int references users(id)
+ );
+
 create table user_comments (
 	id serial primary key,
 	song_id int references songs(song_id),

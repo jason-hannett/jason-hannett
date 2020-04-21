@@ -1,37 +1,39 @@
 import React, {Component} from 'react' 
-import {withRouter} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {setArtistInfo} from '../redux/artistReducer'
 import {setSongInfo} from '../redux/songsReducer'
 import Player from './Player'
 import axios from 'axios'
 
-class Dashboard extends Component{
+class Song extends Component{
 
     constructor(props){
         super(props)
 
         this.state = {
-            songs: []
+            song: []
         }
     }
 
     componentDidMount(){
-        axios.get('/api/all-songs')
-        .then(response => {
-            this.setState({songs: response.data})
-        })
+            axios.get(`/api/song/${this.props.match.params.id}`)
+            .then(response => {
+                this.setState({
+                    song: response.data
+                })
+            })
     }
 
     render(){
-        console.log(this.state.songs)
-        const allSongs = this.state.songs.map((element, index) => {
-            return <Player key={`song: ${index}`} song={element}/>
+        console.log(this.state.song)
+        const song = this.state.song.map((element, index) => {
+            return <Player key={`singleSong: ${index}`} song={element}/>
         })
         return(
             <div>
                 <div className='dashboard-background'>
-                    {allSongs}
+                <div>{song}</div>
                 </div>
             </div>
         )
@@ -46,4 +48,4 @@ const mapStateToProps = reduxState => {
         songs: reduxState.songsReducer
     }};
 
-export default withRouter(connect(mapStateToProps, {setArtistInfo, setSongInfo})(Dashboard));
+export default withRouter(connect(mapStateToProps, {setArtistInfo, setSongInfo})(Song));

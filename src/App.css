@@ -1,6 +1,85 @@
+/* Auth component */
+
+.login-container{
+  width: 300px;
+  height: 400px;
+  background-color: grey;
+  margin-left: 400px;
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#login-logo{
+  margin-top: 20px;
+}
+
+.login-input-container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.register-container{
+  width: 300px;
+  height: 400px;
+  background-color: grey;
+  margin-left: 400px;
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.register-input-container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+/* Yesno container  */
+
+.yesno-container{
+  width: 300px;
+  height: 400px;
+  background-color: grey;
+  margin-left: 400px;
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Artist info container  */
+
+.artist-info-container{
+  width: 300px;
+  height: 400px;
+  background-color: grey;
+  margin-left: 400px;
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.artist-input-container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+/* Nav component */
+
 header {
-  height: 60px;
-  /* position: fixed; */
+  height: 40px;
+  width: 100%;
+  position: fixed;
+  top: 0;
   background-color: grey;
   display: flex;
   align-items: center;
@@ -9,6 +88,7 @@ header {
 
 .nav-links{
   width: 400px;
+  height: 40px;
   /* background-color: black; */
   display: flex;
   align-items: center;
@@ -24,28 +104,32 @@ header {
 }
 
 .nav-profile-info{
-  width: 100px;
+  width: 150px;
   /* background-color: red; */
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
+  color: white;
   padding-left: 5px;
-  /* margin-left: 50px; */
+  margin-right: -50px;
 }
 
 .nav-profile-img{
-  background-color: black;
+  /* background-color: black; */
   border-radius: 50%;
   height: 30px;
   width: 30px;
+  object-fit: contain;
   display: flex;
   align-items: center;
 }
 
 .nav-username{
   display: flex;
+  /* background-color: white; */
   align-items: center;
-  padding-left: 5px;
+  margin-left: 10px;
+  width: 80px;
 }
 
 .logout-button{
@@ -54,4 +138,316 @@ header {
   justify-content: flex-end;
   margin-left: 140px;
 }
+
+/* Dashboard component  */
+.dashboard-background{
+  background-color: rgb(93, 93, 93);
+  height: 535px;
+  width: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-left: 200px;
+  margin-top: 40px;
+  padding-top: 60px;
+  padding-bottom: 70px;
+  overflow: scroll;
+}
+
+.player-container{
+  height: 100px;
+  width: 500px;
+  background-color: white;
+  margin-top: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.song-art{
+  height: 75px;
+  width: 75px;
+  background-color: black;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.play-button{
+  height: 30px;
+  width: 30px;
+  background-color: red;
+  margin-bottom: 45px;
+}
+
+.song-info-container{
+  height: 30px;
+  width: 250px;
+  object-fit: contain;
+  /* background-color: blue; */
+  margin-bottom: 45px;
+  display: flex;
+  align-items:flex-start;
+  flex-direction: column;
+}
+
+.song-info-title{
+  margin-bottom: -41px;
+  margin-left: 5px;
+  height: 15px;
+  width: 250px;
+  /* background-color: lightcyan; */
+  display: flex;
+  align-items: center;
+  /* padding-top: -10px; */
+}
+
+.song-info-artist{
+  height: 15px;
+  width: 250px;
+  margin-left: 5px;
+  align-items: center;
+  font-size: 10px;
+  /* background-color: lightcoral; */
+  display: flex;
+  /* margin-bottom: 10px; */
+}
+
+.player-date-container{
+  height: 20px;
+  width: 60px;
+  background-color: rgb(253, 165, 165);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: -180px;
+  margin-left: 60px;
+  margin-bottom: 70px;
+  
+
+}
+
+.player-song-time{
+  height: 30px;
+  width: 400px;
+  background-color: rgb(92, 155, 197);
+  margin-top: 20px;
+  margin-left: -220px;
+
+}
+
+.player-interact-container{
+  margin-top: 80px;
+  margin-left: -400px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 5px;
+}
+
+.player-input{
+  margin-left: 15px;
+  width: 250px;
+}
+
+.player-remove-button{
+  
+}
+
+.comments-container{
+  height: 75px;
+  width: 500px;
+  background-color: red;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.comment-info{
+  height: 25px;
+  width: 480px;
+  background-color: white;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 5px;
+}
+
+.comment{
+  /* height: 25px; */
+  width: 410px;
+  /* background-color: blue; */
+  margin-left: 5px;
+}
+
+.comment-delete{
+  margin-right: 5px;
+}
+
+/* Profile component */
+
+.profile-background{
+  background-color: white;
+  height: 535px;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  /* flex-direction: row; */
+  /* margin-left: 200px; */
+  margin-top: 40px;
+}
+
+.profile-songs-container{
+  background-color: rgb(93, 93, 93);
+  height: 535px;
+  width: 700px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  /* margin-right: 205px; */
+  /* margin-top: 40px; */
+  /* margin-right: -5px; */
+}
+
+.profile-info-container{
+  width: 210px;
+  height: 535px;
+  /* background-color: fuchsia; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+ .profile-profile-img{
+  background-color: darksalmon;
+  height: 125px;
+  width: 125px;
+  border-radius: 50%;
+  margin-top: 10px;
+}
+
+ .profile-username{
+  height: 20px;
+  width: 125px;
+  align-items: center;
+  text-align: center;
+  margin-top: 10px;
+
+}
+
+.profile-bio-container{
+  height: 150px;
+  width: 175px;
+  background-color: dodgerblue;
+  display:flex;
+  align-items: flex-start;
+}
+
+.profile-bio-input{
+  height: 137px;
+  width: 175px;
+  text-align: initial;
+}
+
+.profile-view-likes-button{
+  height: 20px;
+  width: 50px;
+  display: flex;
+  text-align: left;
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: -1px;
+  margin-left: 125px;
+
+}
+
+.likes-container{
+  height: 175px;
+  width: 175px;
+  background-color: rgb(195, 76, 76);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+  flex-direction: column;
+
+} 
+
+.liked-songs-container{
+  height: 50px;
+  width: 170px;
+  background-color: lemonchiffon;
+  display: flex;
+  align-items: center;
+  margin-left: 2.5px;
+  margin-top: 2.5px;
+  overflow: scroll;
+}
+
+.liked-song-img{
+  height: 45px;
+  width: 45px;
+  background-color: lightcoral;
+  margin-left: 2.5px;
+}
+
+.liked-song-info{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 5px;
+}
+
+.liked-artist-name{
+  margin-top: -5px;
+}
+
+.liked-song-title{
+  margin-top: -20px;
+}
+
+.profile-right-container{
+  width: 210px;
+  height: 535px;
+  /* background-color: fuchsia; */
+}
+
+
+
+/* Playbar component  */
+
+
+/* Track component  */
+
+.upload-container{
+  width: 300px;
+  height: 400px;
+  background-color: grey;
+  margin-left: 400px;
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.upload-input-container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+footer {
+ background-color: grey;
+ position: fixed;
+ bottom: 0;
+ height: 50px;
+ width: 100%; 
+ display: flex;          
+}
+
+/* SONG COMPONENT  */
 
