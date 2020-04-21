@@ -15,7 +15,8 @@ class Comments extends Component {
     super(props)
 
     this.state = {
-        comment: ''
+        comment: '',
+        isEditing: false
     }
   }
 
@@ -29,15 +30,68 @@ class Comments extends Component {
     console.log(this.props.comment.id)
     const {id} = this.props.comment
     axios.delete(`/api/delete-comment/${id}`)
+    .then(response => {
+      this.props.getComments()
+    })
   }
 
+  updateComment = () => {
+    console.log('update button pressed')
+    console.log(this.props.comment.id)
+    console.log(this.props.comment.comment)
+    const {id} = this.props.comment
+    const {comment} = this.state
+    axios.put(`/api/update-comment/${id}`, {comment: comment})
+    .then(response => {
+      console.log(response.data)
+      this.editToggle()
+      this.props.getComments()
+    })
+  }
+
+  editToggle = () => {
+    console.log('edit button pressed')
+    this.setState({
+      isEditing: !this.state.isEditing
+    })
+  }
+
+  inputHandler = (event) => {
+    this.setState({
+        [event.target.name]: event.target.value
+    })
+}
+
+  
+
   render(){
-    console.log(this.props)
+    // console.log(this.props)
+    console.log(this.state.comment)
   return (
                         <div className='comment-info'>
                             <p>{this.props.comment.username}:</p>
-                            <p className='comment'>{this.props.comment.comment}</p>
-                            <button onClick={this.deleteComment} className='comment-delete'>delete</button>
+                            {this.state.isEditing ? null : 
+                            <p className='comment'>{this.props.comment.comment}</p>}
+                            {this.props.user.username === this.props.comment.username ? (
+                             <div className='comment-buttons'>
+                               {this.state.isEditing ? (
+                                 <>
+                                 <input className='edit-comment-input'
+                                        value={this.state.comment}
+                                        name='comment'
+                                        onChange={this.inputHandler} />
+                                 <button onClick={this.updateComment}>save</button>
+                                 <button onClick={this.editToggle} className='comment-delete'>cancel</button>
+                                 </>
+                               ): (
+                               <>
+                               <button onClick={this.editToggle}>edit</button>
+                                <button onClick={this.deleteComment} className='comment-delete'>delete</button>
+                                </>)}
+                            </div>)
+                          :(
+                            null
+                          )}
                         </div>
   );
   }

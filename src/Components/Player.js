@@ -22,6 +22,10 @@ class Player extends Component {
   }
 
   componentDidMount(){
+  this.getComments()
+  }
+
+  getComments = () => {
     const {song_id} = this.props.song
     axios.get(`/api/comments/${song_id}`)
     .then(response => {
@@ -67,7 +71,7 @@ class Player extends Component {
   render(){
     console.log(this.props)
     const allComments = this.state.userComments.map((element, index) => {
-      return <Comments key={index} comment={element}/>
+      return <Comments key={index} comment={element} getComments={this.getComments}/>
     })
   return (
     <div className="Player">

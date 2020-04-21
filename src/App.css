@@ -288,6 +288,18 @@ header {
   margin-left: 5px;
 }
 
+.comment-buttons{
+  display: flex;
+  flex-direction: row;
+  margin-left: 12px;
+}
+
+.edit-comment-input{
+  width: 285px;
+  /* margin-left: 10px; */
+  margin-right: 20px;
+}
+
 .comment-delete{
   margin-right: 5px;
 }

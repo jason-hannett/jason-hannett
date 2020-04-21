@@ -96,8 +96,9 @@ module.exports = {
         const {id} = req.params
         const {comment} = req.body
         console.log(req.body)
+        console.log(req.params)
         db.update_comment(id, comment)
-        .then(newComment => res.status(200).send(newComment))
+        .then(comment => res.status(200).send(comment))
         .catch(err => res.status(500).send(err))
     },
 
@@ -105,7 +106,7 @@ module.exports = {
         const db = req.app.get('db')
         const {id} = req.params
          console.log(req.params)
-        db.unlike_song(id)
+        db.delete_comment(id)
         .then(() => res.sendStatus(200))
         .catch(err => res.status(500).send(err))
     },

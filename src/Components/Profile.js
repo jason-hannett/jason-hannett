@@ -30,6 +30,11 @@ class Profile extends Component{
         })
     }
 
+    // componentWillMount(){
+    //     this.props.user.username = this.props.song.username ?
+    //     axios.get()
+    // }
+
     viewLikes = (props) => {
         this.props.history.push('/likes')
     }
