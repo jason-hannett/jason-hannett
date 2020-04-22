@@ -86,7 +86,7 @@ class Comments extends Component {
                                ): (
                                <>
                                <button onClick={this.editToggle}>edit</button>
-                                <button onClick={this.deleteComment} className='comment-delete'>delete</button>
+                               <img onClick={this.deleteComment} className='comment-delete' src='https://www.freeiconspng.com/uploads/trash-can-icon-21.png' height='17px'/>
                                 </>)}
                             </div>)
                           :(

@@ -17,6 +17,10 @@ class Dashboard extends Component{
     }
 
     componentDidMount(){
+        this.getAllSongs()
+    }
+
+    getAllSongs = () => {
         axios.get('/api/all-songs')
         .then(response => {
             this.setState({songs: response.data})
@@ -26,7 +30,7 @@ class Dashboard extends Component{
     render(){
         console.log(this.state.songs)
         const allSongs = this.state.songs.map((element, index) => {
-            return <Player key={`song: ${index}`} song={element}/>
+            return <Player key={`song: ${index}`} song={element} getAllSongs={this.getAllSongs}/>
         })
         return(
             <div className='auth-background'>

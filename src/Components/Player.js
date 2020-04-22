@@ -18,7 +18,11 @@ class Player extends Component {
     this.state = {
         comment: '',
         userComments: [],
-        isLiked: false
+        isLiked: false,
+        title: '',
+        image: '',
+        description: '',
+        isEditing: false
     }
   }
 
@@ -59,6 +63,13 @@ class Player extends Component {
       })
     }
 
+    editToggle = () => {
+      console.log('like button pressed')
+      this.setState({
+        isEditing: !this.state.isEditing
+      })
+    }
+
 
 
   commentHandler = () => {
@@ -72,6 +83,20 @@ class Player extends Component {
     })
   }
 
+  updateSong = () => {
+    console.log('update button pressed')
+    console.log(this.props.song)
+    const {song_id} = this.props.song
+    const {title, image, description} = this.state
+    axios.put(`/api/update-song/${song_id}`, {title: title, image: image, description: description})
+    .then(response => {
+      console.log(response.data)
+      this.props.history.push(`/song/${this.props.song.song_id}`)
+      this.props.getSong()
+      this.getComments()
+    })
+  }
+
   inputHandler = (event) => {
     this.setState({
         [event.target.name]: event.target.value
@@ -79,11 +104,42 @@ class Player extends Component {
 }
 
   render(){
-    console.log(this.props.likes)
+    console.log(this.props)
     const allComments = this.state.userComments.map((element, index) => {
       return <Comments key={index} comment={element} getComments={this.getComments}/>
     })
   return (
+    <div>
+      {this.props.location.pathname === `/edit-song/${this.props.song.song_id}` ?
+      <div className='edit-player-container'>
+        <div className='edit-player-image'>
+          <img/>
+        </div>
+        <div className='edit-player-song-info'>
+          <h2>{this.props.song.artist_name}</h2>
+          <input 
+                className='edit-song-title'
+                onChange={this.inputHandler}
+                value={this.state.title}
+                name='title' 
+                placeholder={this.props.song.title}/>
+          <input className='edit-song-image'
+                 onChange={this.inputHandler}
+                 value={this.state.image}
+                 name='image' 
+                 placeholder='image'/>
+          <input className='edit-description'
+                 onChange={this.inputHandler}
+                 value={this.state.description}
+                 name='description' 
+                 placeholder={this.props.song.description}/>
+        </div>
+        <div>
+          <button onClick={this.updateSong}>save changes</button>
+        </div>
+      </div>
+   
+      :
     <div className="Player">
         <div className='player-container'>
             <img src={this.props.song.image} className='song-art' alt='song-art'/>
@@ -93,6 +149,7 @@ class Player extends Component {
                 <Link to='/profile'><p className='song-info-artist'>{this.props.song.artist_name}</p></Link>
             </div>
             <div className='player-date-container'>
+              {this.props.user.username === this.props.song.username ? <> <button onClick={() => this.props.history.push(`/edit-song/${this.props.song.song_id}`)}>edit</button> <img src='https://www.freeiconspng.com/uploads/trash-can-icon-21.png' height='15px'/></> : null}
                 <p>{this.props.song.date}</p>
             </div>
             <div className='player-song-time'>
@@ -109,11 +166,12 @@ class Player extends Component {
                        placeholder='comment'></input>
                 <button onClick={this.commentHandler} className='player-submit-button'>submit</button>
             </div>
-
             </div>
             <div className='comments-container'>
               {allComments}
-          </div>
+           </div>
+   </div>
+   }
    </div>
   );
   }

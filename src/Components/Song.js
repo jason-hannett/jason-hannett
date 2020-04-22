@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {setArtistInfo} from '../redux/artistReducer'
 import {setSongInfo} from '../redux/songsReducer'
 import Player from './Player'
+import Comments from './Comments'
 import axios from 'axios'
 
 class Song extends Component{
@@ -12,12 +13,17 @@ class Song extends Component{
         super(props)
 
         this.state = {
-            song: []
+            song: [],
+            userComments: []
         }
     }
 
     componentDidMount(){
-            axios.get(`/api/song/${this.props.match.params.id}`)
+        this.getSong()
+    }
+
+    getSong = () => {
+        axios.get(`/api/song/${this.props.match.params.id}`)
             .then(response => {
                 this.setState({
                     song: response.data
@@ -26,14 +32,18 @@ class Song extends Component{
     }
 
     render(){
-        console.log(this.state.song)
+        console.log(this.props)
         const song = this.state.song.map((element, index) => {
-            return <Player key={`singleSong: ${index}`} song={element}/>
+            return <Player key={`singleSong: ${index}`} song={element} getSong={this.getSong}/>
         })
+        const allComments = this.state.userComments.map((element, index) => {
+            return <Comments key={index} comment={element} getComments={this.getComments}/>
+          })
         return(
             <div className='auth-background'>
                 <div className='dashboard-background'>
                 <div>{song}</div>
+                <div className='comments-container'>{allComments}</div>
                 </div>
             </div>
         )

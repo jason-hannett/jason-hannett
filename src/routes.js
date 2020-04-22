@@ -17,6 +17,7 @@ export default (
         <Route path='/yes-no' component={Yesno}/>
         <Route path='/dashboard' component={Dashboard}/>
         <Route path='/song/:id' component={Song}/>
+        <Route path='/edit-song/:id' component={Song}/>
         <Route path='/profile' component={Profile}/>
         <Route path='/likes' component={Likes}/>
         <Route path='/upload' component={Track}/>

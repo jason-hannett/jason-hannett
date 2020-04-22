@@ -32,6 +32,26 @@ module.exports = {
         .catch(err => res.status(500).send(err))
     }, 
 
+    updateSong: (req, res) => {
+        const db = req.app.get('db');
+        const {song_id} = req.params
+        const {title, image, description} = req.body
+        console.log(req.body)
+        console.log(req.params)
+        db.update_song(song_id, title, image, description)
+        .then(song => res.status(200).send(song))
+        .catch(err => res.status(500).send(err))
+    },
+
+    deleteSong: (req, res) => {
+        const db = req.app.get('db')
+        const {song_id} = req.params
+         console.log(req.params)
+        db.delete_song(song_id)
+        .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
+    },
+
     getAllLikes: (req, res) => {
         const db = req.app.get('db');
         const {id} = req.params 
