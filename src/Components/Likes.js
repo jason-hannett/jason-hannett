@@ -32,7 +32,7 @@ class Likes extends Component{
             return <Player key={`like: ${index}`} song={element}/>
         })
         return(
-            <div>
+            <div className='auth-background'>
                 {this.props.location.pathname === '/likes' 
                 ?(
                  <div className='dashboard-background'>

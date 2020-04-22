@@ -173,20 +173,41 @@
 
 /* Nav component */
 
-header {
+.nav-container{
   height: 40px;
   width: 100%;
   position: fixed;
   top: 0;
-  background-color: grey;
+  background-color: rgb(76,87,110);
   display: flex;
   align-items: center;
   justify-content: space-evenly;
 }
 
+.nav-logo{
+  /* margin-left: -70px; */
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo-img{
+  animation-name: spin;
+  animation-duration: 4000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.nav-header-name{
+  margin-left: 5px;
+  font-family: paytoneOne;
+  color: white;
+  text-shadow: 5px 3px 7px black;
+}
+
 .nav-links{
-  width: 400px;
+  width: 200px;
   height: 40px;
+  margin-left: 40px;
   /* background-color: black; */
   display: flex;
   align-items: center;
@@ -194,11 +215,40 @@ header {
   text-decoration: none;
 }
 
+.nav-dashboard{
+  height: 40px;
+  color: white;
+  background-color: rgb(76,87,110);
+  border-style: none;
+  font-size: 15px;
+}
+
+.nav-upload{
+  height: 40px;
+  width: 65px;
+  color: white;
+  background-color: rgb(76,87,110);
+  border-style: none;
+  font-size: 15px;
+}
+
 .search-container{
-  width: 200px;
+  width: 300px;
   /* background-color: white; */
   display: flex;
   align-items: center;
+}
+
+.nav-search{
+  width: 300px;
+  border-style: none;
+  height: 20px;
+  
+}
+
+.nav-search-button{
+  height: 22px;
+  background-color: white;
 }
 
 .nav-profile-info{
@@ -213,7 +263,7 @@ header {
 }
 
 .nav-profile-img{
-  /* background-color: black; */
+  background-color: black;
   border-radius: 50%;
   height: 30px;
   width: 30px;
@@ -228,6 +278,7 @@ header {
   align-items: center;
   margin-left: 10px;
   width: 80px;
+  font-family: paytoneOne;
 }
 
 .logout-button{
@@ -235,33 +286,47 @@ header {
   align-items: center;
   justify-content: flex-end;
   margin-left: 140px;
+  height: 40px;
+  /* width: 65px; */
+  color: white;
+  background-color: rgb(76,87,110);
+  border-style: none;
+  font-size: 15px;
 }
 
 /* Dashboard component  */
 .dashboard-background{
-  background-color: rgb(93, 93, 93);
+  background-color: rgb(112,129,143);
   height: 535px;
   width: 700px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
-  margin-left: 200px;
   margin-top: 40px;
   padding-top: 60px;
   padding-bottom: 70px;
   overflow: scroll;
-  /* position: absolute; */
+  /* box-shadow: 2px 2px 15px black;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(253,207,0); */
+
 }
 
 .player-container{
   height: 100px;
   width: 500px;
   /* position: absolute; */
-  background-color: white;
+  background-color: rgb(0,101,174);
   margin-top: 40px;
   display: flex;
   align-items: center;
+
+  box-shadow: 2px 2px 15px black;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(253,207,0); 
 }
 
 .song-art{
@@ -273,9 +338,10 @@ header {
 }
 
 .play-button{
-  height: 30px;
-  width: 30px;
+  height: 25px;
+  width: 25px;
   background-color: red;
+  border-radius: 50%;
   margin-bottom: 45px;
 }
 
@@ -358,11 +424,11 @@ header {
   width: 500px;
   /* background-color: red; */
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
   overflow: scroll;
   flex-direction: column;
-  padding-top: 30px;
+  /* padding-top: 30px; */
   padding-bottom: 10px;
 }
 
@@ -417,7 +483,7 @@ header {
 }
 
 .profile-songs-container{
-  background-color: rgb(93, 93, 93);
+  background-color: rgb(112,129,143);
   height: 535px;
   width: 700px;
   display: flex;
@@ -432,7 +498,7 @@ header {
 .profile-info-container{
   width: 210px;
   height: 535px;
-  /* background-color: fuchsia; */
+  background-color: rgb(186,202,216);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -530,7 +596,7 @@ header {
 .profile-right-container{
   width: 210px;
   height: 535px;
-  /* background-color: fuchsia; */
+  background-color: rgb(186,202,216);
 }
 
 
@@ -551,11 +617,19 @@ header {
   flex-direction: column;
 }
 
+#upload-logo{
+  margin-bottom: -70px;
+    animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
 .upload-input-container{
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 50px;
+  /* margin-top: 50px; */
 }
 
 footer {

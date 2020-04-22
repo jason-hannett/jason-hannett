@@ -31,7 +31,7 @@ class Song extends Component{
             return <Player key={`singleSong: ${index}`} song={element}/>
         })
         return(
-            <div>
+            <div className='auth-background'>
                 <div className='dashboard-background'>
                 <div>{song}</div>
                 </div>

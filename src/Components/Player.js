@@ -68,6 +68,7 @@ class Player extends Component {
     .then(response => {
       const {comment} = response.data
       this.props.postComment(comment)
+      this.getComments()
     })
   }
 
@@ -86,7 +87,7 @@ class Player extends Component {
     <div className="Player">
         <div className='player-container'>
             <img src={this.props.song.image} className='song-art' alt='song-art'/>
-                <img src='https://c7.uihere.com/files/507/373/97/google-play-button-computer-icons-button.jpg' height='10px' className='play-button'/>
+                <img className='play-button' src='https://www.pngfind.com/pngs/m/427-4277341_add-play-button-to-image-online-overlay-play.png' height='8px' className='play-button'/>
             <div className='song-info-container'>
                 <p onClick={() => this.props.history.push(`/song/${this.props.song.song_id}`)} className='song-info-title'>{this.props.song.title}</p>
                 <Link to='/profile'><p className='song-info-artist'>{this.props.song.artist_name}</p></Link>
@@ -99,7 +100,7 @@ class Player extends Component {
             </div>
             <div className='player-interact-container'>
                 {this.state.isLiked ? 
-                (<button className='player-liked-button'>liked</button>) 
+                (<><img className='player-input-button' src='https://pngimg.com/uploads/like/like_PNG73.png' height='20px'/></>) 
                 : (<button onClick={this.likeSong} className='player-like-button'>like</button> )}
                 <input onChange={this.inputHandler} 
                        className='player-input' 

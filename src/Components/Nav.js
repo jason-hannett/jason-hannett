@@ -31,15 +31,18 @@ class Nav extends Component{
     render(){
         console.log(this.props.user)
         return(
-            <header>
+            <header className='nav-container'>
+                    <div className='nav-logo'>
+                        <img className='nav-logo-img' src={'https://images.vexels.com/media/users/3/158737/isolated/preview/3353b3a06bc810221952cccbbb189b47-record-rarity-vinyl-illustration-by-vexels.png'} height='30px' alt='logo'/>
+                        <h2 className='nav-header-name'>Jack</h2>
+                    </div>
                 <div className='nav-links'>
-                    <img src={'https://images.vexels.com/media/users/3/158737/isolated/preview/3353b3a06bc810221952cccbbb189b47-record-rarity-vinyl-illustration-by-vexels.png'} height='30px' alt='logo'/>
-                    <Link to='/dashboard'><button>Dashboard</button></Link>
-                    <Link to='upload'><button>Upload</button></Link>
+                    <Link to='/dashboard'><button className='nav-dashboard'>Dashboard</button></Link>
+                    <Link to='upload'><button className='nav-upload'>Upload</button></Link>
                 </div>
                 <div className='search-container'>
-                    <input placeholder='search'/>
-                    <button>search</button>
+                    <input className='nav-search' placeholder='search'/>
+                    <img className='nav-search-button' src='https://img.icons8.com/ios/500/search--v1.png' height='20px'/>
                 </div>
                 <div className='nav-profile-info'>
                     <div className='nav-profile-img'>

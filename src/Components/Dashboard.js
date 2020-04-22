@@ -29,7 +29,7 @@ class Dashboard extends Component{
             return <Player key={`song: ${index}`} song={element}/>
         })
         return(
-            <div>
+            <div className='auth-background'>
                 <div className='dashboard-background'>
                     {allSongs}
                 </div>

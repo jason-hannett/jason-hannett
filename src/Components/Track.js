@@ -42,10 +42,10 @@ class Track extends Component{
     render(){
         // console.log(this.state)
         return(
-            <div>
-                Track
-                <div className='upload-container'>
-                        <h2>Upload</h2>
+            <div className='auth-background'>
+                <div className='login-container'>
+                        <h2 id='login-header'>Upload</h2>
+                        <img id='upload-logo' src={'https://images.vexels.com/media/users/3/158737/isolated/preview/3353b3a06bc810221952cccbbb189b47-record-rarity-vinyl-illustration-by-vexels.png'} height='90px' alt='logo'/>
                         <div className='upload-input-container'>
                             <img src={this.state.image} height='100px'/>
                             <input 
@@ -53,25 +53,29 @@ class Track extends Component{
                                     name='title'
                                     onChange={(event) => this.inputHandler(event)}
                                     placeholder='title'
-                                    type='Title'/>                         
+                                    type='Title'
+                                    className='login-input-2'/>                         
                             <input 
                                     value={this.state.image}
                                     name='image'
                                     onChange={(event) => this.inputHandler(event)}
-                                    placeholder='Image'/>
+                                    placeholder='Image'
+                                    className='login-input-1'/>
                             <input 
                                     value={this.state.file}
                                     name='file'
                                     onChange={(event) => this.inputHandler(event)}
-                                    placeholder='File'/>                         
+                                    placeholder='File'
+                                    className='login-input-1'/>                         
                             <input 
                                     value={this.state.description}
                                     name='description'
                                     onChange={(event) => this.inputHandler(event)}
-                                    placeholder='Description'/>                         
+                                    placeholder='Description'
+                                    className='login-input-1'/>                         
                         </div>        
-                        <button onClick={this.goBack}>Cancel</button> 
-                        <button onClick={this.addSong}>Upload</button> 
+                        <button className='login-button' onClick={this.addSong}>Upload</button> 
+                        <button className='login-button' onClick={this.goBack}>Cancel</button> 
                     </div>
             </div>
         )
