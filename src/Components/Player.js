@@ -22,8 +22,14 @@ class Player extends Component {
         title: '',
         image: '',
         description: '',
-        isEditing: false
+        isEditing: false,
+        isPlaying: false
     }
+  }
+
+
+  togglePlay = () => {
+    this.setState({isPlaying: !this.state.isPlaying})
   }
 
   componentDidMount(){
@@ -49,10 +55,10 @@ class Player extends Component {
 
     unlikeSong = () => {
       console.log('unlike')
-      const {song_id} = this.props.song
-      axios.delete(`api/unlike/${song_id}`)
+      const {id} = this.props.song
+      axios.delete(`api/unlike/${id}`)
       .then(response => {
-        // this.props.history.push('/likes')
+        this.props.getAllLikes()
       })
     }
 
@@ -103,6 +109,23 @@ class Player extends Component {
     })
 }
 
+profile = () => {
+  this.props.history.push(`/profile/${this.props.user.id}`)
+}
+
+deleteSong = () => {
+  const {song_id} = this.props.song
+  console.log('delete')
+  console.log(this.props.song.song_id)
+  axios.delete(`/api/delete-song/${song_id}`)
+  .then(() => {
+    {this.props.location.pathname === '/dashboard' ? 
+    this.props.getAllSongs() : this.props.getUserSongs()}
+  })
+}
+
+
+
   render(){
     console.log(this.props)
     const allComments = this.state.userComments.map((element, index) => {
@@ -111,31 +134,32 @@ class Player extends Component {
   return (
     <div>
       {this.props.location.pathname === `/edit-song/${this.props.song.song_id}` ?
-      <div className='edit-player-container'>
-        <div className='edit-player-image'>
-          <img/>
-        </div>
+        <div className='edit-player-container'>
+          <div className='edit-left-container'>
+           <div className='edit-player-image'>
+            <img src={this.state.image} height='100px'/>
+          </div>
+           </div> 
         <div className='edit-player-song-info'>
-          <h2>{this.props.song.artist_name}</h2>
-          <input 
-                className='edit-song-title'
-                onChange={this.inputHandler}
-                value={this.state.title}
-                name='title' 
-                placeholder={this.props.song.title}/>
-          <input className='edit-song-image'
-                 onChange={this.inputHandler}
-                 value={this.state.image}
-                 name='image' 
-                 placeholder='image'/>
-          <input className='edit-description'
-                 onChange={this.inputHandler}
-                 value={this.state.description}
-                 name='description' 
-                 placeholder={this.props.song.description}/>
-        </div>
-        <div>
-          <button onClick={this.updateSong}>save changes</button>
+            <input 
+                  className='edit-song-title'
+                  onChange={this.inputHandler}
+                  value={this.state.title}
+                  name='title' 
+                  placeholder={this.props.song.title}/>
+            <input className='edit-song-image'
+                  onChange={this.inputHandler}
+                  value={this.state.image}
+                  name='image' 
+                  placeholder='image'/>
+            <input className='edit-description'
+                  onChange={this.inputHandler}
+                  value={this.state.description}
+                  name='description' 
+                  placeholder={this.props.song.description}/>
+          <div>
+            <button className='edit-button' onClick={this.updateSong}>save changes</button>
+          </div>
         </div>
       </div>
    
@@ -143,21 +167,22 @@ class Player extends Component {
     <div className="Player">
         <div className='player-container'>
             <img src={this.props.song.image} className='song-art' alt='song-art'/>
-                <img className='play-button' src='https://www.pngfind.com/pngs/m/427-4277341_add-play-button-to-image-online-overlay-play.png' height='8px' className='play-button'/>
+                <img onClick={this.togglePlay} className='play-button' src='https://image.flaticon.com/icons/svg/483/483054.svg' height='8px' className='play-button'/>
             <div className='song-info-container'>
                 <p onClick={() => this.props.history.push(`/song/${this.props.song.song_id}`)} className='song-info-title'>{this.props.song.title}</p>
-                <Link to='/profile'><p className='song-info-artist'>{this.props.song.artist_name}</p></Link>
+                <p onClick={this.profile}className='song-info-artist'>{this.props.song.artist_name}</p>
             </div>
             <div className='player-date-container'>
-              {this.props.user.username === this.props.song.username ? <> <button onClick={() => this.props.history.push(`/edit-song/${this.props.song.song_id}`)}>edit</button> <img src='https://www.freeiconspng.com/uploads/trash-can-icon-21.png' height='15px'/></> : null}
+              {this.props.user.username === this.props.song.username ? <> <button onClick={() => this.props.history.push(`/edit-song/${this.props.song.song_id}`)}>edit</button> 
+              <img className='player-delete-song' onClick={this.deleteSong} src='https://www.freeiconspng.com/uploads/trash-can-icon-21.png' height='15px'/></> : null}
                 <p>{this.props.song.date}</p>
             </div>
             <div className='player-song-time'>
                 <audio>{this.props.song.file}</audio>   
             </div>
             <div className='player-interact-container'>
-                {this.state.isLiked ? 
-                (<><img className='player-input-button' src='https://pngimg.com/uploads/like/like_PNG73.png' height='20px'/></>) 
+                {this.state.isLiked || this.props.location.pathname === '/likes' ? 
+                (<><img onClick={this.unlikeSong} className='player-input-button' src='https://pngimg.com/uploads/like/like_PNG73.png' height='20px'/></>) 
                 : (<button onClick={this.likeSong} className='player-like-button'>like</button> )}
                 <input onChange={this.inputHandler} 
                        className='player-input' 

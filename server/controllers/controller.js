@@ -73,9 +73,9 @@ module.exports = {
     
     unlikeSong: (req, res) => {
         const db = req.app.get('db')
-        const {song_id} = req.params
+        const {id} = req.params
          console.log(req.params)
-        db.unlike_song(song_id)
+        db.unlike_song(id)
         .then(() => res.sendStatus(200))
         .catch(err => res.status(500).send(err))
     },
@@ -85,6 +85,15 @@ module.exports = {
         const {song_id} = req.params
  
         db.get_song(song_id)
+        .then(song => res.status(200).send(song))
+        .catch(err => res.status(500).send(err))
+    },
+
+    getUserSongs: (req, res) => {
+        const db = req.app.get('db');
+        const {id} = req.params
+ 
+        db.get_user_songs(id)
         .then(song => res.status(200).send(song))
         .catch(err => res.status(500).send(err))
     },
@@ -128,6 +137,17 @@ module.exports = {
          console.log(req.params)
         db.delete_comment(id)
         .then(() => res.sendStatus(200))
+        .catch(err => res.status(500).send(err))
+    },
+
+    updateUser: (req, res) => {
+        const db = req.app.get('db');
+        const {id} = req.params
+        const {profile_pic, bio} = req.body
+        console.log(req.body)
+        console.log(req.params)
+        db.update_user(id, profile_pic, bio)
+        .then(user => res.status(200).send(user))
         .catch(err => res.status(500).send(err))
     },
 

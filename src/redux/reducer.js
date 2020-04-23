@@ -1,18 +1,19 @@
 const initialState = {
     username: '',
     id: 0,
-    profile_pic: ''
+    profile_pic: '',
+    bio: ''
 }
 
 const SET_USER_INFO = 'SET_USER_INFO'
 const LOGOUT_USER = 'LOGOUT_USER'
 
-export const setUserInfo = (id, username, profile_pic) => {
+export const setUserInfo = (id, username, profile_pic, bio) => {
     console.log(username)
     console.log(id)
     return {
         type: SET_USER_INFO,
-        payload: {id, username, profile_pic}
+        payload: {id, username, profile_pic, bio}
     }
 }
 

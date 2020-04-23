@@ -18,6 +18,10 @@ class Likes extends Component{
     }
 
     componentDidMount(){
+        this.getAllLikes()
+    }
+
+    getAllLikes = () => {
         axios.get(`/api/all-liked-songs/${this.props.user.id}`)
         .then(response => {
             this.setState({likes: response.data})
@@ -29,7 +33,7 @@ class Likes extends Component{
        console.log(this.props)
     //    console.log(this.state.songs)
         const likedSongs = this.state.likes.map((element, index) => {
-            return <Player key={`like: ${index}`} song={element}/>
+            return <Player key={`like: ${index}`} song={element} getAllLikes={this.getAllLikes}/>
         })
         return(
             <div className='auth-background'>

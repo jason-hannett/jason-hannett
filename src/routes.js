@@ -8,6 +8,7 @@ import Artistinfo from './Components/Artistinfo'
 import Yesno from './Components/Yesno'
 import Likes from './Components/Likes'
 import Song from './Components/Song'
+import Nav from './Components/Nav'
 
 export default (
     <Switch>
@@ -17,8 +18,9 @@ export default (
         <Route path='/yes-no' component={Yesno}/>
         <Route path='/dashboard' component={Dashboard}/>
         <Route path='/song/:id' component={Song}/>
+        <Route path='/play-song/:id' component={Nav}/>
         <Route path='/edit-song/:id' component={Song}/>
-        <Route path='/profile' component={Profile}/>
+        <Route path='/profile/:user_id' component={Profile}/>
         <Route path='/likes' component={Likes}/>
         <Route path='/upload' component={Track}/>
     </Switch>

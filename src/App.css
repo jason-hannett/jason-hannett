@@ -178,11 +178,12 @@
   width: 100%;
   position: fixed;
   top: 0;
-  background-color: rgb(76,87,110);
+  background-color: rgb(28, 140, 214);
   display: flex;
   align-items: center;
   justify-content: space-evenly;
 }
+
 
 .nav-logo{
   /* margin-left: -70px; */
@@ -218,7 +219,7 @@
 .nav-dashboard{
   height: 40px;
   color: white;
-  background-color: rgb(76,87,110);
+  background-color: rgb(28, 140, 214);
   border-style: none;
   font-size: 15px;
 }
@@ -227,7 +228,20 @@
   height: 40px;
   width: 65px;
   color: white;
-  background-color: rgb(76,87,110);
+  background-color: rgb(28, 140, 214);
+  border-style: none;
+  font-size: 15px;
+}
+
+.nav-like-container{
+  margin-left: 15px;
+}
+
+.nav-like-button{
+  height: 40px;
+  width: 65px;
+  color: white;
+  background-color: rgb(28, 140, 214);
   border-style: none;
   font-size: 15px;
 }
@@ -289,14 +303,14 @@
   height: 40px;
   /* width: 65px; */
   color: white;
-  background-color: rgb(76,87,110);
+  background-color: rgb(28, 140, 214);
   border-style: none;
   font-size: 15px;
 }
 
 /* Dashboard component  */
 .dashboard-background{
-  background-color: rgb(112,129,143);
+  background-color: rgb(186,202,216);
   height: 535px;
   width: 700px;
   display: flex;
@@ -340,7 +354,7 @@
 .play-button{
   height: 25px;
   width: 25px;
-  background-color: red;
+  background-color: rgb(253,207,0);
   border-radius: 50%;
   margin-bottom: 45px;
 }
@@ -381,7 +395,7 @@
 .player-date-container{
   height: 20px;
   width: 60px;
-  background-color: rgb(253, 165, 165);
+  /* background-color: rgb(253, 165, 165); */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -390,6 +404,10 @@
   margin-bottom: 70px;
   
 
+}
+
+.player-delete-song{
+  margin-left: 5px;
 }
 
 .player-song-time{
@@ -436,10 +454,58 @@
   border-color: rgb(253,207,0); 
 }
 
+.edit-left-container{
+  height: 200px;
+  width: 150px;
+  /* background-color: white; */
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
 .edit-player-image{
-  height: 75px;
-  width: 75px;
+  height: 100px;
+  width: 100px;
   background-color: black;
+  margin-top: 10px;
+}
+
+.edit-player-song-info{
+  display: flex;
+  width: 400px;
+  height: 200px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.edit-song-title{
+  height: 20px;
+  width: 300px;
+  border-style: none;
+  box-shadow: 5px 3px 7px black;
+}
+
+.edit-song-image{
+  margin-top: 10px;
+  height: 20px;
+  width: 300px;
+  border-style: none;
+  box-shadow: 5px 3px 7px black;
+}
+
+.edit-description{
+  margin-top: 10px;
+  height: 90px;
+  width: 300px;
+  border-style: none;
+  box-shadow: 5px 3px 7px black;
+}
+
+.edit-button{
+  margin-top: 10px;
+  border-style: none;
+  box-shadow: 5px 3px 7px black;
 }
 
 .comments-container{
@@ -507,11 +573,11 @@
 }
 
 .profile-songs-container{
-  background-color: rgb(112,129,143);
+  background-color: rgb(186,202,216);
   height: 535px;
   width: 700px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   flex-direction: column;
   /* margin-right: 205px; */
@@ -525,7 +591,7 @@
   background-color: rgb(186,202,216);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
 }
 
@@ -534,7 +600,12 @@
   height: 125px;
   width: 125px;
   border-radius: 50%;
-  margin-top: 10px;
+  margin-top: 25px;
+
+  box-shadow: 2px 2px 5px black;
+  border-style: solid;
+  border-width: 1px;
+  /* border-color: rgb(253,207,0); */
 }
 
  .profile-username{
@@ -544,20 +615,30 @@
   text-align: center;
   margin-top: 10px;
 
+  font-family: paytoneOne;
+  /* color: white; */
+
 }
 
 .profile-bio-container{
   height: 150px;
   width: 175px;
-  background-color: dodgerblue;
+  background-color: rgb(0,101,174);
   display:flex;
   align-items: flex-start;
+
+  box-shadow: 2px 2px 5px black;
+  border-style: solid;
+  border-width: 1px;
+  border-color: rgb(253,207,0);
 }
 
 .profile-bio-input{
-  height: 137px;
+  height: 150px;
   width: 175px;
   text-align: initial;
+  background-color: white;
+  border-style: none;
 }
 
 .profile-view-likes-button{
@@ -657,13 +738,71 @@
 }
 
 footer {
- background-color: grey;
+ background-color: rgb(0,101,174);
  position: fixed;
  bottom: 0;
  height: 50px;
  width: 100%; 
- display: flex;          
+ display: flex; 
+ align-items: center; 
+ border-style: solid;
+ border-width: 1px;
+ border-color: black;        
 }
 
+.playbar-song-info{
+  height: 50px;
+  width: 25%;
+  background: rgb(92, 155, 197);
+  display: flex;
+  align-items: center;
+}
+
+.playbar-song-img{
+  height: 40px;
+  width: 40px;
+  background-color: rgb(186,202,216);
+  margin-left: 5px;
+  /* margin-top: 3px; */
+}
+.playbar-artist-title{
+  height: 35px;
+  width: 75px;
+  background-color: rgb(92, 155, 197);
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  padding-left: 5px;
+  /* justify-content: flex-start; */
+}
+
+.playbar-artist{
+  height: 10px;
+  margin-top: -2px;
+}
+
+.playbar-title{
+  height: 10px;
+  margin-top: -10px;
+}
+
+.playbar-buttons{
+  height: 50px;
+  width: 83%;
+  background: rgb(92, 155, 197);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.play{
+  margin-left: 5px;
+  margin-right: 5px;
+}
 /* SONG COMPONENT  */
+  .playbar-volume{
+    height: 50px;
+    width: 25%;
+    background: rgb(92, 155, 197);
+  }
 

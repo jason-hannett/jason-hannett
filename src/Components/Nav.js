@@ -25,7 +25,11 @@ class Nav extends Component{
       }
 
       toProfile = (props) => {
-          this.props.history.push('/profile')
+          this.props.history.push(`/profile/${this.props.user.id}`)
+      }
+
+      toLikes = () => {
+          this.props.history.push('/likes')
       }
 
     render(){
@@ -50,6 +54,9 @@ class Nav extends Component{
                     </div>
                     <div className='nav-username'>
                     <h3 onClick={this.toProfile}>{this.props.user.username}</h3>
+                    <div className='nav-like-container'>
+                        <button onClick={this.toLikes} className='nav-like-button'>Likes</button>
+                    </div>
                     </div>
                 </div>
                 <button onClick={this.logout}className='logout-button'>Logout</button>

@@ -1,7 +1,8 @@
 create table users (
 	id serial primary key,
 	username varchar(100) not null,
-	password text not null
+	password text not null,
+	bio varchar(200)
 );
 
 create table artist_information (
