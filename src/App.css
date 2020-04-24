@@ -27,7 +27,11 @@
   height: 400px;
   background-color: rgb(0,101,174);
   border-radius: 3%;
-  box-shadow: 8px 5px 20px black;
+  /* box-shadow: 8px 5px 20px black; */
+  box-shadow: 0 0 5px black,
+              0 0 25px black;
+              /* 0 0 50px black, */
+              /* 0 0 100px rgb(253,207,0); */
   border-style: solid;
   border-width: 2px;
   border-color: rgb(253,207,0);
@@ -231,6 +235,11 @@
   background-color: rgb(28, 140, 214);
   border-style: none;
   font-size: 15px;
+}
+
+.nav-upload :hover{
+  cursor: hand;
+  color: yellow;
 }
 
 .nav-like-container{
@@ -773,7 +782,7 @@
 }
 
 footer {
- background-color: rgb(0,101,174);
+ background-color: rgb(28, 140, 214);
  position: fixed;
  bottom: 0;
  height: 50px;
@@ -788,7 +797,7 @@ footer {
 .playbar-song-info{
   height: 50px;
   width: 25%;
-  background: rgb(92, 155, 197);
+  background: rgb(28, 140, 214);
   display: flex;
   align-items: center;
 }
@@ -803,7 +812,7 @@ footer {
 .playbar-artist-title{
   height: 35px;
   width: 75px;
-  background-color: rgb(92, 155, 197);
+  background-color: rgb(28, 140, 214);
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -824,7 +833,7 @@ footer {
 .playbar-buttons{
   height: 50px;
   width: 83%;
-  background: rgb(92, 155, 197);
+  background: rgb(28, 140, 214);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -838,7 +847,7 @@ footer {
   .playbar-volume{
     height: 50px;
     width: 25%;
-    background: rgb(92, 155, 197);
+    background: rgb(28, 140, 214);
   }
 
   #no-songs{

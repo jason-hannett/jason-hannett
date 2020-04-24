@@ -20,8 +20,8 @@ class Auth extends Component{
         axios.post('/api/register', this.state)
         .then(response => {
             console.log(response.data)
-            const {id, username, profile_pic} = response.data
-            this.props.setUserInfo(id, username, profile_pic)
+            const {id, username, profile_pic, bio} = response.data
+            this.props.setUserInfo(id, username, profile_pic, bio)
             this.props.history.push('/yes-no')
         })
         .catch(err => console.log(err))
@@ -32,8 +32,8 @@ class Auth extends Component{
         axios.post('/api/login', {username, password})
         .then(response => {
             console.log(response.data)
-            const {id, username, profile_pic} = response.data
-            this.props.setUserInfo(id, username, profile_pic)
+            const {id, username, profile_pic, bio} = response.data
+            this.props.setUserInfo(id, username, profile_pic, bio)
             this.props.history.push('/dashboard');
         })
         .catch(err => console.log(err))

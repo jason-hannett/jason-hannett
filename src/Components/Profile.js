@@ -60,7 +60,7 @@ class Profile extends Component{
         })
     }
     render(){
-        console.log(this.state.songs)
+        console.log(this.props)
         // const likedSongs = this.state.likes.map((element, index) => {
         //     return <Player key={`liked: ${index}`} likedSong={element}/>
         // })
