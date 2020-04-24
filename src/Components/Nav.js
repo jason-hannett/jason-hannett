@@ -12,7 +12,8 @@ class Nav extends Component{
         this.state = {
             search: '',
             profile_pic: '',
-            username: ''
+            username: '',
+            songs: []
         }
     }
 
@@ -32,8 +33,36 @@ class Nav extends Component{
           this.props.history.push('/likes')
       }
 
+      inputHandler = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
+    }
+
+    componentDidMount(){
+        axios.get('/api/all-songs')
+        .then(response => {
+            this.setState({songs: response.data})
+        })
+    }
+
+    toSong = () => {
+        console.log('element clicked')
+        console.log(this.props.song.song_id)
+        this.props.history.push(`/song/${this.props.song.song_id}`)
+    }
+
     render(){
-        console.log(this.props.user)
+        console.log(this.props)
+        let searchSong = this.state.songs.filter((element, index) => {
+            return element.title.includes(this.state.search)
+         })
+         .map((element, index) => {
+             return <div className='search-result-container'>
+                        <p onClick={this.toSong} className='search-element'>{element.title}</p>
+                    </div>
+         })
+         console.log(this.searchSong)
         return(
             <header className='nav-container'>
                     <div className='nav-logo'>
@@ -45,9 +74,14 @@ class Nav extends Component{
                     <Link to='upload'><button className='nav-upload'>Upload</button></Link>
                 </div>
                 <div className='search-container'>
-                    <input className='nav-search' placeholder='search'/>
-                    <img className='nav-search-button' src='https://img.icons8.com/ios/500/search--v1.png' height='20px'/>
+                    <input 
+                            className='nav-search' placeholder='search'
+                            value={this.state.search}
+                            name='search' 
+                            onChange={this.inputHandler}/>
+                    <img onClick={this.search} className='nav-search-button' src='https://img.icons8.com/ios/500/search--v1.png' height='20px'/>
                 </div>
+                {this.state.search === '' ? null : <>{searchSong}</>}
                 <div className='nav-profile-info'>
                     <div className='nav-profile-img'>
                         <img src={this.props.user.profile_pic} height='30px' alt='profile'/>
@@ -69,7 +103,10 @@ class Nav extends Component{
 const mapStateToProps = reduxState => {
     
     return {
-        user: reduxState.reducer
+        user: reduxState.reducer,
+        song: reduxState.songsReducer,
+        artist: reduxState.artistReducer,
+
     }};
 
 export default withRouter(connect(mapStateToProps, {logoutUser})(Nav));

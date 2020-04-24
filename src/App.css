@@ -251,6 +251,9 @@
   /* background-color: white; */
   display: flex;
   align-items: center;
+  /* flex-direction: column; */
+  /* margin-top: 0px; */
+  /* position: absolute; */
 }
 
 .nav-search{
@@ -263,6 +266,27 @@
 .nav-search-button{
   height: 22px;
   background-color: white;
+}
+
+.search-result-container{
+  height: 20px;
+  width: 294px;
+  background-color: white;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: column;
+  padding-top: 5px;
+  padding-left: 5px;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: -37px;
+  margin-left: -331px;
+}
+
+.search-element{
+  margin-top: -5px;
+  width: 250px;
 }
 
 .nav-profile-info{

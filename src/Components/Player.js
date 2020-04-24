@@ -6,6 +6,7 @@ import {getLikedSongs} from '../redux/likesReducer'
 import {setSongInfo} from '../redux/songsReducer'
 import {postComment} from '../redux/commentsReducer'
 import Comments from './Comments'
+import Sound from 'react-sound';
 import axios from 'axios'
 
 
@@ -23,13 +24,19 @@ class Player extends Component {
         image: '',
         description: '',
         isEditing: false,
-        isPlaying: false
+        playStatus: undefined,
+        position: 0
     }
   }
 
 
   togglePlay = () => {
-    this.setState({isPlaying: !this.state.isPlaying})
+    console.log(this.props.song.file)
+    this.setState({playStatus: Sound.status.PLAYING})
+  }
+
+  togglePause = () => {
+    this.setState({playStatus: Sound.status.PAUSED})
   }
 
   componentDidMount(){
@@ -168,6 +175,7 @@ deleteSong = () => {
         <div className='player-container'>
             <img src={this.props.song.image} className='song-art' alt='song-art'/>
                 <img onClick={this.togglePlay} className='play-button' src='https://image.flaticon.com/icons/svg/483/483054.svg' height='8px' className='play-button'/>
+                <img onClick={this.togglePause} className='play-button' src='https://image.flaticon.com/icons/svg/483/483054.svg' height='8px' className='play-button'/>
             <div className='song-info-container'>
                 <p onClick={() => this.props.history.push(`/song/${this.props.song.song_id}`)} className='song-info-title'>{this.props.song.title}</p>
                 <p onClick={this.profile}className='song-info-artist'>{this.props.song.artist_name}</p>
@@ -178,7 +186,16 @@ deleteSong = () => {
                 <p>{this.props.song.date}</p>
             </div>
             <div className='player-song-time'>
-                <audio>{this.props.song.file}</audio>   
+                <Sound
+                  url={this.props.song.file}
+                  playStatus={this.state.playStatus}
+                  playFromPosition={this.state.position}
+                  // onLoading={this.handleSongLoading}
+                  // onPlaying={this.handleSongPlaying}
+                  // onFinishedPlaying={this.handleSongFinishedPlaying}
+                  onLoad={() => console.log('Loaded')}
+                  onLoading={({ bytesLoaded, bytesTotal }) => console.log(`${bytesLoaded / bytesTotal * 100}% loaded`)}
+                  />  
             </div>
             <div className='player-interact-container'>
                 {this.state.isLiked || this.props.location.pathname === '/likes' ? 
