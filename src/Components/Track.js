@@ -25,7 +25,7 @@ class Track extends Component{
         .then(response => {
             const {title, image, file, description, genre} = response.data
             this.props.setSongInfo(title, image, file, description, genre)
-            this.props.history.push('/dashboard')
+            this.props.history.goBack()
             })  
         }
 

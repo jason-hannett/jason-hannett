@@ -60,7 +60,7 @@ class Profile extends Component{
         })
     }
     render(){
-        console.log(this.props)
+        console.log(this.state.songs)
         // const likedSongs = this.state.likes.map((element, index) => {
         //     return <Player key={`liked: ${index}`} likedSong={element}/>
         // })
@@ -74,37 +74,55 @@ class Profile extends Component{
                         {this.state.isEditing
                          ? 
                         <>
-                        <img src={this.props.user.profile_pic} className='profile-profile-img'/>
-                        <input
-                                value={this.state.profile_pic}
-                                name='profile_pic' 
-                                onChange={this.inputHandler}/>
-                        <button onClick={this.udpateUser}>Save</button>
-                        <button onClick={this.editToggle}>Cancel</button> 
+                            <img src={this.props.user.profile_pic} className='profile-profile-img'/>
+                            <input
+                                    value={this.state.profile_pic}
+                                    name='profile_pic' 
+                                    onChange={this.inputHandler}
+                                    className='edit-profile-pic'/>
                         </>
                         :
-                        <img onClick={this.editToggle} src={this.props.user.profile_pic} className='profile-profile-img'/>}
-                        <h2 className='profile-username'>{this.props.user.username}</h2>
+                        <>
+                            <img onClick={this.editToggle} src={this.props.user.profile_pic} className='profile-profile-img'/>
+                            <h2 className='profile-username'>{this.props.user.username}</h2>
+                        </>}
                         <div className='profile-bio-container'>
                             {this.state.isEditing ? 
                             <>
-                            <input 
-                                  className='profile-bio-input' 
-                                  placeholder={this.props.user.bio}
-                                  value={this.state.bio}
-                                  name='bio' 
-                                  onChange={this.inputHandler}/> 
-                            <button onClick={this.udpateUser}>Save Changes</button>
-                            <button onClick={this.editToggle}>Cancel</button>
+                                <input 
+                                    className='profile-bio-input' 
+                                    placeholder={this.props.user.bio}
+                                    value={this.state.bio}
+                                    name='bio' 
+                                    onChange={this.inputHandler}/> 
                             </>
                             : 
                             <div onClick={this.editToggle} className='profile-bio-container'>{this.props.user.bio}</div>
                             }
-                        </div>  
+                        </div> 
+                        <div>
+                            {this.state.isEditing ?
+                            <>
+                                <button 
+                                        className='profile-edit-save' 
+                                        onClick={this.udpateUser}>Save Changes</button>
+                                <button 
+                                        className='profile-edit-cancel' 
+                                        onClick={this.editToggle}>Cancel</button>
+                            </>
+                            : null}
+                        </div> 
                     </div>
-                    <div className='profile-songs-container'>
-                        {userSongs}
-                    </div>
+                        <div className='profile-songs-container'>
+                            {this.state.songs.length === 0 ? 
+                            <>
+                            <h2 id='no-songs'color='black'>You haven't uploaded any Songs!</h2>
+                            </>
+                            :
+                            <>
+                            {userSongs}
+                            </>}
+                        </div>
                     <div className='profile-right-container'></div>
                 </div>
             </div>

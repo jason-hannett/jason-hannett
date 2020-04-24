@@ -71,7 +71,7 @@ class Nav extends Component{
                     </div>
                 <div className='nav-links'>
                     <Link to='/dashboard'><button className='nav-dashboard'>Dashboard</button></Link>
-                    <Link to='upload'><button className='nav-upload'>Upload</button></Link>
+                    <button onClick={() => this.props.history.push('/upload')} className='nav-upload'>Upload</button>
                 </div>
                 <div className='search-container'>
                     <input 

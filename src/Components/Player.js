@@ -126,15 +126,16 @@ deleteSong = () => {
   console.log(this.props.song.song_id)
   axios.delete(`/api/delete-song/${song_id}`)
   .then(() => {
-    {this.props.location.pathname === '/dashboard' ? 
-    this.props.getAllSongs() : this.props.getUserSongs()}
+    {this.props.location.pathname === `/dashboard` ? 
+    this.props.getAllSongs() : this.props.history.push('/dashboard')}
   })
 }
 
 
 
   render(){
-    console.log(this.props)
+    // console.log(this.props)
+    console.log(this.state.position)
     const allComments = this.state.userComments.map((element, index) => {
       return <Comments key={index} comment={element} getComments={this.getComments}/>
     })
@@ -174,10 +175,23 @@ deleteSong = () => {
     <div className="Player">
         <div className='player-container'>
             <img src={this.props.song.image} className='song-art' alt='song-art'/>
-                <img onClick={this.togglePlay} className='play-button' src='https://image.flaticon.com/icons/svg/483/483054.svg' height='8px' className='play-button'/>
-                <img onClick={this.togglePause} className='play-button' src='https://image.flaticon.com/icons/svg/483/483054.svg' height='8px' className='play-button'/>
+                {this.state.playStatus === Sound.status.PLAYING ? 
+                <img 
+                    onClick={this.togglePause} 
+                    className='play-button' 
+                    src='https://i.dlpng.com/static/png/6415529_preview.png' 
+                    height='8px' 
+                    className='play-button'/> 
+                :
+                <img 
+                    onClick={this.togglePlay} 
+                    className='play-button' src='https://image.flaticon.com/icons/svg/483/483054.svg' 
+                    height='8px' 
+                    className='play-button'/>}
             <div className='song-info-container'>
-                <p onClick={() => this.props.history.push(`/song/${this.props.song.song_id}`)} className='song-info-title'>{this.props.song.title}</p>
+                <p  onClick={() => this.props.history.push(`/song/${this.props.song.song_id}`)} 
+                    className='song-info-title'>
+                      {this.props.song.title}</p>
                 <p onClick={this.profile}className='song-info-artist'>{this.props.song.artist_name}</p>
             </div>
             <div className='player-date-container'>
@@ -189,12 +203,14 @@ deleteSong = () => {
                 <Sound
                   url={this.props.song.file}
                   playStatus={this.state.playStatus}
-                  playFromPosition={this.state.position}
+                  // playFromPosition={this.state.position}
+                  position={this.state.position}
                   // onLoading={this.handleSongLoading}
                   // onPlaying={this.handleSongPlaying}
-                  // onFinishedPlaying={this.handleSongFinishedPlaying}
                   onLoad={() => console.log('Loaded')}
                   onLoading={({ bytesLoaded, bytesTotal }) => console.log(`${bytesLoaded / bytesTotal * 100}% loaded`)}
+                  onFinishdPlaying={() => this.setState({playStatus: Sound.status.STOPPED})}
+                  onStop={() => console.log('Stopped')}
                   />  
             </div>
             <div className='player-interact-container'>
