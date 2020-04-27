@@ -424,6 +424,7 @@
   width: 250px;
   display: flex;
   align-items: center;
+  color: rgb(186,202,216);
 }
 
 .song-info-title:hover{
@@ -862,9 +863,9 @@ footer {
  width: 100%; 
  display: flex; 
  align-items: center; 
- border-style: solid;
+ /* border-style: solid;
  border-width: 1px;
- border-color: black;        
+ border-color: black;         */
 }
 
 .playbar-song-info{
