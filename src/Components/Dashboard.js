@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {setArtistInfo} from '../redux/artistReducer'
 import {setSongInfo} from '../redux/songsReducer'
 import Player from './Player'
+import Playbar from './Playbar'
 import axios from 'axios'
 
 class Dashboard extends Component{
@@ -28,7 +29,7 @@ class Dashboard extends Component{
     }
 
     render(){
-        console.log(this.state.songs)
+        console.log(this.props)
         const allSongs = this.state.songs.map((element, index) => {
             return <Player key={`song: ${index}`} song={element} getAllSongs={this.getAllSongs}/>
         })

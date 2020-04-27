@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Link, withRouter} from 'react-router-dom'
 import {connect} from 'react-redux';
 import {logoutUser} from '../redux/reducer';
+import {setSongInfo} from '../redux/songsReducer'
 import axios from 'axios'
 
 class Nav extends Component{
@@ -62,16 +63,22 @@ class Nav extends Component{
                         <p onClick={this.toSong} className='search-element'>{element.title}</p>
                     </div>
          })
-         console.log(this.searchSong)
+         console.log(this.songs)
         return(
             <header className='nav-container'>
                     <div className='nav-logo'>
-                        <img className='nav-logo-img' src={'https://images.vexels.com/media/users/3/158737/isolated/preview/3353b3a06bc810221952cccbbb189b47-record-rarity-vinyl-illustration-by-vexels.png'} height='30px' alt='logo'/>
+                        <img 
+                            className='nav-logo-img' 
+                            src={'https://images.vexels.com/media/users/3/158737/isolated/preview/3353b3a06bc810221952cccbbb189b47-record-rarity-vinyl-illustration-by-vexels.png'} 
+                            height='30px' 
+                            alt='logo'/>
                         <h2 className='nav-header-name'>Jack</h2>
                     </div>
                 <div className='nav-links'>
                     <Link to='/dashboard'><button className='nav-dashboard'>Dashboard</button></Link>
-                    <button onClick={() => this.props.history.push('/upload')} className='nav-upload'>Upload</button>
+                    <button 
+                            onClick={() => this.props.history.push('/upload')} 
+                            className='nav-upload'>Upload</button>
                 </div>
                 <div className='search-container'>
                     <input 
@@ -79,7 +86,11 @@ class Nav extends Component{
                             value={this.state.search}
                             name='search' 
                             onChange={this.inputHandler}/>
-                    <img onClick={this.search} className='nav-search-button' src='https://img.icons8.com/ios/500/search--v1.png' height='20px'/>
+                    <img 
+                        onClick={this.search} 
+                        className='nav-search-button' 
+                        src='https://img.icons8.com/ios/500/search--v1.png' 
+                        height='20px'/>
                 </div>
                 {this.state.search === '' ? null : <>{searchSong}</>}
                 <div className='nav-profile-info'>
@@ -87,13 +98,17 @@ class Nav extends Component{
                         <img src={this.props.user.profile_pic} height='30px' alt='profile'/>
                     </div>
                     <div className='nav-username'>
-                    <h3 onClick={this.toProfile}>{this.props.user.username}</h3>
+                        <h3 onClick={this.toProfile}>{this.props.user.username}</h3>
                     <div className='nav-like-container'>
-                        <button onClick={this.toLikes} className='nav-like-button'>Likes</button>
+                        <button 
+                                onClick={this.toLikes} 
+                                className='nav-like-button'>Likes</button>
                     </div>
                     </div>
                 </div>
-                <button onClick={this.logout}className='logout-button'>Logout</button>
+                <button 
+                        onClick={this.logout}
+                        className='logout-button'>Logout</button>
             </header>
         )
     }
@@ -109,4 +124,4 @@ const mapStateToProps = reduxState => {
 
     }};
 
-export default withRouter(connect(mapStateToProps, {logoutUser})(Nav));
+export default withRouter(connect(mapStateToProps, {logoutUser, setSongInfo})(Nav));

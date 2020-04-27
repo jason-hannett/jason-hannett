@@ -19,6 +19,9 @@ class Playbar extends Component{
         }
     }
 
+    componentDidMount(){
+        this.getSong()
+    }
 
     getSong = () => {
         axios.get(`/api/song/${this.props.match.params.id}`)

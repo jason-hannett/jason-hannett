@@ -24,9 +24,10 @@ class Track extends Component{
     }
 
     getSignedRequest = ([file]) => {
+        console.log('hit')
         this.setState({ isUploading: true });
         // We are creating a file name that consists of a random string, and the name of the file that was just uploaded with the spaces removed and hyphens inserted instead. This is done using the .replace function with a specific regular expression. This will ensure that each file uploaded has a unique name which will prevent files from overwriting other files due to duplicate names.
-        const fileName = `${this.props.song.title.randomString()}-${file.name.replace(/\s/g, '-')}`;
+        const fileName = `${randomString()}-${file.name.replace(/\s/g, '-')}`;
     
         // We will now send a request to our server to get a "signed url" from Amazon. We are essentially letting AWS know that we are going to upload a file soon. We are only sending the file-name and file-type as strings. We are not sending the file itself at this point.
         axios.get('/api/signs3', {
@@ -55,6 +56,8 @@ class Track extends Component{
           .then(response => {
             this.setState({ isUploading: false, url });
             // THEN DO SOMETHING WITH THE URL. SEND TO DB USING POST REQUEST OR SOMETHING
+            this.addSong()
+               
           })
           .catch(err => {
             this.setState({
@@ -96,15 +99,18 @@ class Track extends Component{
     }
 
     render(){
-        // console.log(this.state)
+        console.log(this.props)
         const { url, isUploading } = this.state;
         return(
             <div className='auth-background'>
                 <div className='login-container'>
-                        <h2 id='login-header'>Upload</h2>
-                        <img id='upload-logo' src={'https://images.vexels.com/media/users/3/158737/isolated/preview/3353b3a06bc810221952cccbbb189b47-record-rarity-vinyl-illustration-by-vexels.png'} height='90px' alt='logo'/>
+                        <h2 id='login-header'>Upload</h2>  
+                        <img 
+                                id='track-upload-img' 
+                                src={this.state.image} 
+                                height='100px'/>                      
                         <div className='upload-input-container'>
-                            <img src={this.state.image} height='100px'/>
+                           
                             <input 
                                     value={this.state.title}
                                     name='title'
@@ -123,39 +129,42 @@ class Track extends Component{
                                     name='file'
                                     onChange={(event) => this.inputHandler(event)}
                                     placeholder='File'
-                                    className='login-input-1'/>
-                                                      */}
-                                   <> 
-                                        <Dropzone
+                                    className='login-input-1'/> */}
+                                                     
+                                   <div > 
+                                        <Dropzone className='dropzone'
                                                     onDropAccepted={this.getSignedRequest}
                                                     style={{
-                                                        position: 'relative',
+                                                        // position: 'relative',
                                                         width: 50,
                                                         height: 50,
-                                                        borderWidth: 3,
-                                                        marginTop: 10,
-                                                        borderColor: 'rgb(102, 102, 102)',
+                                                        borderWidth: 2,
+                                                        marginTop: 30,
+                                                        marginBottom: 15,
+                                                        borderColor: 'rgb(253,207,0)',
                                                         borderStyle: 'dashed',
                                                         borderRadius: 5,
                                                         display: 'flex',
                                                         justifyContent: 'center',
                                                         alignItems: 'center',
                                                         fontSize: 10,
+                                                        
                                                     }}
-                                                    accept="image/*"
+                                                    accept="image/*,.mp3"
+                                                    // accept='*'
                                                     multiple={false}
                                                     >
-                                                    {isUploading ? <GridLoader /> : <p>Drop File or Click Here</p>}
+                                                    {isUploading ? <GridLoader /> : <p>Drop Song or Click Here</p>}
                                             </Dropzone>
-                                    </>                      
-                            <input 
+                                    </div>                      
+                            {/* <input 
                                     value={this.state.description}
                                     name='description'
                                     onChange={(event) => this.inputHandler(event)}
                                     placeholder='Description'
-                                    className='login-input-1'/>                         
+                                    className='login-input-1'/>                          */}
                         </div>        
-                        <button className='login-button' onClick={this.addSong}>Upload</button> 
+                        {/* <button className='login-button' onClick={this.addSong}>Upload</button>  */}
                         <button className='login-button' onClick={this.goBack}>Cancel</button> 
                     </div>
             </div>
@@ -166,7 +175,8 @@ class Track extends Component{
 
 const mapStateToProps = reduxState => {
     return {
-        user: reduxState.reducer
+        user: reduxState.reducer,
+        artist: reduxState.artistReducer
     }
 }
 

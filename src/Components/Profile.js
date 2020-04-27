@@ -97,7 +97,9 @@ class Profile extends Component{
                                     onChange={this.inputHandler}/> 
                             </>
                             : 
-                            <div onClick={this.editToggle} className='profile-bio-container'>{this.props.user.bio}</div>
+                            <div onClick={this.editToggle} className='profile-bio-container'>
+                                <p className='profile-bio-text'>{this.props.user.bio}</p>
+                            </div>
                             }
                         </div> 
                         <div>

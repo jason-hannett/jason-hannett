@@ -25,7 +25,8 @@ class Player extends Component {
         description: '',
         isEditing: false,
         playStatus: undefined,
-        position: 0
+        position: 0,
+
     }
   }
 
@@ -33,6 +34,7 @@ class Player extends Component {
   togglePlay = () => {
     console.log(this.props.song.file)
     this.setState({playStatus: Sound.status.PLAYING})
+    // this.props.history.push(`/play-song/${this.props.song.song_id}`)
   }
 
   togglePause = () => {
@@ -135,7 +137,7 @@ deleteSong = () => {
 
   render(){
     // console.log(this.props)
-    console.log(this.state.position)
+    console.log(this.state.duration)
     const allComments = this.state.userComments.map((element, index) => {
       return <Comments key={index} comment={element} getComments={this.getComments}/>
     })
@@ -193,18 +195,37 @@ deleteSong = () => {
                     className='song-info-title'>
                       {this.props.song.title}</p>
                 <p onClick={this.profile}className='song-info-artist'>{this.props.song.artist_name}</p>
+                
             </div>
             <div className='player-date-container'>
-              {this.props.user.username === this.props.song.username ? <> <button onClick={() => this.props.history.push(`/edit-song/${this.props.song.song_id}`)}>edit</button> 
-              <img className='player-delete-song' onClick={this.deleteSong} src='https://www.freeiconspng.com/uploads/trash-can-icon-21.png' height='15px'/></> : null}
+              {this.props.user.username === this.props.song.username 
+                ?
+                <> 
+                  <button 
+                      onClick={() => this.props.history.push(`/edit-song/${this.props.song.song_id}`)}
+                      className='player-edit-button'>
+                        edit
+                  </button> 
+                  <img 
+                      className='player-delete-song' 
+                      onClick={this.deleteSong} 
+                      src='https://www.freeiconspng.com/uploads/trash-can-icon-21.png' 
+                      height='15px'/>
+                </> 
+                : null}
                 <p>{this.props.song.date}</p>
             </div>
             <div className='player-song-time'>
+              <img 
+                  src='https://oola-lab.com/wp-content/uploads/2018/01/Sound-Wave-PNG-Photo.png' 
+                  height='30px' 
+                  width='400px'/>
                 <Sound
                   url={this.props.song.file}
                   playStatus={this.state.playStatus}
                   // playFromPosition={this.state.position}
                   position={this.state.position}
+                  duration={this.state.duration}
                   // onLoading={this.handleSongLoading}
                   // onPlaying={this.handleSongPlaying}
                   onLoad={() => console.log('Loaded')}
@@ -214,15 +235,31 @@ deleteSong = () => {
                   />  
             </div>
             <div className='player-interact-container'>
-                {this.state.isLiked || this.props.location.pathname === '/likes' ? 
-                (<><img onClick={this.unlikeSong} className='player-input-button' src='https://pngimg.com/uploads/like/like_PNG73.png' height='20px'/></>) 
-                : (<button onClick={this.likeSong} className='player-like-button'>like</button> )}
-                <input onChange={this.inputHandler} 
+                {this.state.isLiked || this.props.location.pathname === '/likes' 
+                ? 
+                (<>
+                    <img 
+                      onClick={this.unlikeSong} 
+                      className='player-input-button' 
+                      src='https://pngimg.com/uploads/like/like_PNG73.png' 
+                      height='20px'/></>) 
+                : 
+                (<button 
+                      onClick={this.likeSong} 
+                      className='player-like-button'>
+                        like
+                  </button> )}
+                <input 
+                       onChange={this.inputHandler} 
                        className='player-input' 
                        name='comment' 
                        value={this.state.comment} 
                        placeholder='comment'></input>
-                <button onClick={this.commentHandler} className='player-submit-button'>submit</button>
+                <button 
+                      onClick={this.commentHandler} 
+                      className='player-submit-button'>
+                        submit
+                </button>
             </div>
             </div>
             <div className='comments-container'>

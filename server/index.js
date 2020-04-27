@@ -29,6 +29,7 @@ const express = require('express'),
     //AMAZON S3
 
     app.get('/api/signs3', (req, res) => {
+        console.log('hit', req.query)
         aws.config = {
           region: 'us-west-1',
           accessKeyId: AWS_ACCESS_KEY_ID,
@@ -38,6 +39,7 @@ const express = require('express'),
         const s3 = new aws.S3();
         const fileName = req.query['file-name'];
         const fileType = req.query['file-type'];
+        console.log(fileName, fileType)
         const s3Params = {
           Bucket: S3_BUCKET,
           Key: fileName,

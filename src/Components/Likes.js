@@ -37,21 +37,13 @@ class Likes extends Component{
         })
         return(
             <div className='auth-background'>
-                {this.props.location.pathname === '/likes' 
-                ?(
                  <div className='dashboard-background'>
-                    <div>{likedSongs}</div>
-                </div>
-                ):(
-                <div className='profile-info-container'>
-                        <div className='liked-songs-container'>
-                            <img height='45px' className='liked-song-img'/>
-                            <div className='liked-song-info'>
-                                 <p className='liked-artist-name'>{this.props.likedSong.title}</p> 
-                                <p className='liked-song-title'>title</p>
-                            </div>
-                        </div>
-                </div>)}
+                     {this.state.likes.length === 0 
+                    ? 
+                     <h2 className='no-likes'>You haven't liked any songs!</h2>
+                    :
+                    <div>{likedSongs}</div>}
+                </div>   
             </div>
         )
     }

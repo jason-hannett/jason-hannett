@@ -17,9 +17,9 @@ module.exports = {
 
     addSong: (req, res) => {
         const db = req.app.get('db');
-        const {id, title, file, image, description, genre} = req.body;
+        const {id, title, file, image, description, genre, url} = req.body;
          console.log(req.body)
-        db.add_song({id, title, file, image, description, genre})
+        db.add_song({id, title, file, image, description, genre, url})
         .then(() => res.sendStatus(200))
         .catch(err => res.status(500).send(err))
     }, 
