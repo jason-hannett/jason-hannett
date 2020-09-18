@@ -3,13 +3,15 @@ const express = require('express'),
      massive = require('massive'),
      session = require('express-session'),
      aws = require('aws-sdk'),
+     path = require('path'),
      {SERVER_PORT, CONNECTION_STRING, SESSION_SECRET, S3_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY} = process.env,
      authCtrl = require('./controllers/authControllers'),
-     ctrl = require('./controllers/controller')
+     ctrl = require('./controllers/controller'),
      port = SERVER_PORT,
      app = express();
 
      app.use(express.json());
+     app.use(express.static(`${__dirname}/../build`));
 
      app.use(session({
         resave: false,
@@ -84,5 +86,9 @@ const express = require('express'),
      app.post('/api/register', authCtrl.register)
      app.post('/api/login', authCtrl.login)
      app.get('/api/logout', authCtrl.logout)
+
+     app.get("*", (req, res) => {
+      res.sendFile(path.join(__dirname, "../build/index.html"));
+    });
 
      app.listen(port, () => console.log(`server is thoomin on ${SERVER_PORT}`))

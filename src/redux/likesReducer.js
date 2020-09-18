@@ -3,9 +3,7 @@ const initialState = {
     title: '',
     file: '',
     description: '',
-    genre: ''}],
-    
-    
+    genre: ''}],   
 }
 
 const GET_LIKED_SONGS = 'GET_LIKED_SONGS'
